@@ -945,14 +945,14 @@ If no rgb.txt file is found, return nil."
          (size-chan (cond ((eq len-col 12) 4) ;; if length of color is 12, then 3 channels of size 4
                           ((eq len-col 16) 4) ;; if length of color is 16, then 3 channels + alpha of size 4
                           (t (/ len-col 3)))) ;; assume 3 channels for arbitrary sizes of size N/3
-         (new-color "")
+         (new-color "#")
          (i 0))
     (while (< i len-col)
       (let ((start i)
             (end (+ i 2))) ;; normal channel sizes are 2 digit hexes
         (setq new-color (concat new-color (substring xcolor start end))
               i (+ i size-chan))))
-    (concat "#" new-color)))
+    new-color))
 
 ;; Convert COLOR to the #RRGGBB string.  If COLOR is already in that
 ;; format, it's left unchanged.
